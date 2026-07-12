@@ -3,6 +3,8 @@
 
 **Python • Markdown • YAML • Fast • Minimal • Elegant**
 
+Read Docs: [https://pycora.axcora.com/docs](https://pycora.axcora.com/docs)
+
 ---
 
 ## 📖 Table of Contents
@@ -444,7 +446,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 | [python-frontmatter](https://github.com/eyeseast/python-frontmatter) | Frontmatter parsing |
 | [Watchdog](https://github.com/gorakhargosh/watchdog) | File watching |
 
-### 👨‍💻 Maintainers
+### 💻 Maintainers
 
 - **Axcora Technology**
 
@@ -457,6 +459,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 | 🌐 Website | [pycora.axcora.com](https://pycora.axcora.com) |
 | 💻 GitHub | [mesinkasir](https://github.com/mesinkasir) |
 | 📧 Email | [axcora@gmail.com](mailto:axcora@gmail.com) |
+| 👨‍ Consult | [Hire Us](https://fiverr.com/creativitas) |
 
 ---
 
@@ -472,6 +475,8 @@ If you find PyCora useful, please consider:
 ---
 
 **PyCora** - *Static Site Generator • Python • Markdown • YAML*
+
+Read Docs: [https://pycora.axcora.com/docs](https://pycora.axcora.com/docs)
 
 <div align="center">
 
