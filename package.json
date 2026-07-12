@@ -1,0 +1,30 @@
+{
+  "name": "pycora-ssg",
+  "version": "1.0.0",
+  "description": "PyCora - Static Site Generator with Python, Markdown, and YAML",
+  "author": "Axcora Technology",
+  "license": "MIT",
+  "keywords": [
+    "static-site-generator",
+    "python",
+    "markdown",
+    "yaml",
+    "blog",
+    "ssg"
+  ],
+  "scripts": {
+    "install": "python install.py",
+    "dev": "python dev.py",
+    "build": "python ssg.py",
+    "serve": "python -m http.server 8000 --directory output",
+    "menu": "python run.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mesinkasir/pycora.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mesinkasir/pycora/issues"
+  },
+  "homepage": "https://pycora.axcora.com"
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% if page and page.title %}{{ page.title }} | {% elif post and post.metadata.title %}{{ post.metadata.title }} | {% endif %}{{ site.name }}{% endblock %}</title>
+    
+    <meta name="description" content="{% block description %}{% if page and page.description %}{{ page.description }}{% elif post and post.metadata.description %}{{ post.metadata.description }}{% else %}{{ site.description }}{% endif %}{% endblock %}">
+    
+    <link rel="canonical" href="{% block canonical %}{% if page and page.slug %}{{ site.url }}/{{ page.slug }}/{% elif post and post.metadata.slug %}{{ site.url }}/blog/{{ post.metadata.slug }}/{% else %}{{ site.url }}{% endif %}{% endblock %}">
+    
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}{% if page and page.title %}{{ page.title }}{% elif post and post.metadata.title %}{{ post.metadata.title }}{% else %}{{ site.name }}{% endif %}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{% if page and page.description %}{{ page.description }}{% elif post and post.metadata.description %}{{ post.metadata.description }}{% else %}{{ site.description }}{% endif %}{% endblock %}">
+    <meta property="og:url" content="{% block og_url %}{% if page and page.slug %}{{ site.url }}/{{ page.slug }}/{% elif post and post.metadata.slug %}{{ site.url }}/blog/{{ post.metadata.slug }}/{% else %}{{ site.url }}{% endif %}{% endblock %}">
+    <meta property="og:site_name" content="{{ site.name }}">
+    <meta property="og:image" content="{% block og_image %}{% if post and post.metadata.image %}{{ post.metadata.image }}{% elif page and page.image %}{{ page.image }}{% else %}{{ site.image }}{% endif %}{% endblock %}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}{% if page and page.title %}{{ page.title }}{% elif post and post.metadata.title %}{{ post.metadata.title }}{% else %}{{ site.name }}{% endif %}{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{% if page and page.description %}{{ page.description }}{% elif post and post.metadata.description %}{{ post.metadata.description }}{% else %}{{ site.description }}{% endif %}{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{% if post and post.metadata.image %}{{ post.metadata.image }}{% elif page and page.image %}{{ page.image }}{% else %}{{ site.image }}{% endif %}{% endblock %}">
+    <meta name="twitter:site" content="@{{ site.twitter_username }}">
+    <meta name="twitter:creator" content="@{{ site.twitter_username }}">
+    <meta name="robots" content="{% block robots %}index, follow{% endblock %}">
+    <meta name="author" content="{% block author %}{% if post and post.metadata.author %}{{ post.metadata.author }}{% elif page and page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}{% endblock %}">
+    <link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="{{ site.url }}/feed.xml">
+    <link rel="icon" href="{{ site.url }}{{site.favicon}}" type="image/x-icon">
+   
+	
+<link rel="stylesheet" href="{{ site.url }}/css/bs.css">     
+<link rel="stylesheet" href="{{ site.url }}/css/main.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    <div class="container">
+        <a class="navbar-brand text-gradient" href="/">
+		<img class="img-fluid" width="40" height="40"  alt="{{site.name}}"
+		src="{{ site.url }}{{site.favicon}}"/>
+		{{ site.name }}</a>
+        
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <small>Menu</small> <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                {% for item in site.nav.list %} 
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ item.url }}">{{ item.name }}</a>
+                </li>
+                {% endfor %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ site.nav.button.url }}">
+					<i class="{{ site.nav.button.icon }}"></i> {{ site.nav.button.text }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main class="container" style="padding-top: 80px;">
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="footer-custom">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-4">
+                <div class="footer-brand text-gradient">{{ site.name }}</div>
+                <p class="footer-text mt-1">{{ site.description }}</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <p class="footer-text mb-0">&copy; {{ site.name }} | built with <a href="https://pycora.axcora.com">Pycora</a></p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <div class="social-links">
+                    {% for s in site.footer.list %}<a href="{{s.url}}" title="{{s.name}}"><i class="{{s.icon}}"></i></a>{% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">   
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

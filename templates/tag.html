@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mt-5">
+    <div class="col-lg-8">
+        <h1 class="fw-bold">
+            <i class="fas fa-tag me-2"></i>
+            #{{ tag }}
+        </h1>
+        <p class="text-secondary mb-5">{{ posts|length }} post{% if posts|length > 1 %}s{% endif %}</p>
+        
+        {% for post in posts %}
+        <article class="blog-card">
+            <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-dark text-white text-secondary fw-normal">
+                    <i class="far fa-calendar me-1"></i>
+                    {{ post.date.strftime('%B %d, %Y') }}
+                </span>
+                {% if post.metadata.author %}
+                <span class="badge bg-dark text-white text-secondary fw-normal">
+                    <i class="far fa-user me-1"></i>
+                    {{ post.metadata.author }}
+                </span>
+                {% endif %}
+            </div>
+            
+            <a href="/blog/{{ post.slug }}" class="post-title">
+                {{ post.metadata.title }}
+            </a>
+			{% if post.metadata.image %}
+            <a href="/blog/{{ post.slug }}">
+                <img class="img-fluid rounded-3" width="100%" height="100%" alt="{{ post.metadata.title }}"
+				src="{{post.metadata.image}}"/>
+            </a>
+			{% endif %}
+            
+            <p class="post-excerpt">
+                {{ post.metadata.excerpt|default(post.content|striptags|truncate(150)) }}
+            </p>
+            
+            <div class="post-tags">
+                {% for t in post.metadata.tags %}
+                <a href="/tags/{{ t }}" class="tag">#{{ t }}</a>
+                {% endfor %}
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="blog-card">
+            <h5 class="fw-bold mb-3">All Tags</h5>
+            <div class="d-flex flex-wrap gap-2">
+                {% for t in all_tags %}
+                <a href="/tags/{{ t }}" class="tag text-secondary">#{{ t }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

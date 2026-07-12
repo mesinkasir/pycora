@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    
+    <!-- Homepage -->
+    <url>
+        <loc>{{ site.url }}/</loc>
+        <lastmod>{{ now.strftime('%Y-%m-%d') }}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Blog -->
+    <url>
+        <loc>{{ site.url }}/blog/</loc>
+        <lastmod>{{ now.strftime('%Y-%m-%d') }}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <!-- Posts -->
+    {% for post in posts %}
+    <url>
+        <loc>{{ site.url }}/blog/{{ post.metadata.slug }}/</loc>
+        <lastmod>{{ post.date.strftime('%Y-%m-%d') }}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    {% endfor %}
+    
+    <!-- Pages -->
+    {% for page in pages %}
+    <url>
+        <loc>{{ site.url }}/{{ page.slug }}/</loc>
+        <lastmod>{{ now.strftime('%Y-%m-%d') }}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    {% endfor %}
+    
+    <!-- Tags -->
+    {% for tag in tags %}
+    <url>
+        <loc>{{ site.url }}/tags/{{ tag }}/</loc>
+        <lastmod>{{ now.strftime('%Y-%m-%d') }}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    {% endfor %}
+</urlset>

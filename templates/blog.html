@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mt-5">
+    <div class="col-lg-8">
+        <h1 class="fw-bold mb-4">Blog</h1>
+        <p class=" mb-5">Thoughts, stories, and ideas.</p>
+        
+        {% for post in posts %}
+        <article class="blog-card">
+            <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-dark text-white  fw-normal">
+                    <i class="far fa-calendar me-1"></i>
+                    {{ post.date.strftime('%B %d, %Y') }}
+                </span>
+                {% if post.metadata.author %}
+                <span class="badge bg-dark text-white  fw-normal">
+                    <i class="far fa-user me-1"></i>
+                    {{ post.metadata.author }}
+                </span>
+                {% endif %}
+                <span class="badge bg-dark text-white  fw-normal">
+                    <i class="far fa-clock me-1"></i>
+                    {{ post.content|wordcount // 200 + 1 }} min read
+                </span>
+            </div>
+			
+			{% if post.metadata.image %}
+            <a href="/blog/{{ post.slug }}">
+                <img class="img-fluid rounded-3" width="100%" height="100%" alt="{{ post.metadata.title }}"
+				src="{{post.metadata.image}}"/>
+            </a>
+			{% endif %}
+            
+            <a href="/blog/{{ post.slug }}" class="post-title">
+                {{ post.metadata.title }}
+            </a>
+            
+            <p class="post-excerpt">
+                {{ post.metadata.excerpt|default(post.content|striptags|truncate(150)) }}
+            </p>
+            
+            <div class="post-tags">
+                {% for tag in post.metadata.tags %} 
+                <a href="/tags/{{ tag }}" class="tag">#{{ tag }}</a>
+                {% endfor %}
+            </div>
+        </article>
+        {% endfor %}
+        
+        {% if total_pages > 1 %}
+        <nav aria-label="Blog pagination">
+            <ul class="pagination-custom">
+                {% if current_page > 1 %}
+                <li class="page-item">
+                    <a class="page-link" href="/blog/page/{{ current_page - 1 }}">
+                        <i class="fas fa-arrow-left me-1"></i> Prev
+                    </a>
+                </li>
+                {% endif %}
+                
+                {% for page_num in range(1, total_pages + 1) %}
+                <li class="page-item">
+                    <a class="page-link {% if page_num == current_page %}active{% endif %}" 
+                       href="/blog/page/{{ page_num }}">
+                        {{ page_num }}
+                    </a>
+                </li>
+                {% endfor %}
+                
+                {% if current_page < total_pages %}
+                <li class="page-item">
+                    <a class="page-link" href="/blog/page/{{ current_page + 1 }}">
+                        Next <i class="fas fa-arrow-right ms-1"></i>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="blog-card">
+            <h3 class="fw-bold mb-3 h5">All Tags</h3>
+            <div class="d-flex flex-wrap gap-2">
+                {% for tag, posts in tags.items() %} 
+                <a href="/tags/{{ tag }}" class="btn btn-outline-secondary btn-sm me-1">#{{ tag }} ({{ posts|length }})</a>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="blog-card mt-4 text-center justify-content-center">
+            <h3 class="fw-bold mb-3 h5">About</h3>
+			{% if site.image %}
+			<img class="img-thumbnail rounded-circle" alt="{{site.name}}" width="120" height="120" src="{{site.image}}"/>
+			{% endif %}
+			<p class="fw-bold">
+			{{ site.name }}
+			</p>
+            <p class=" small">
+                {{ site.description }}
+            </p>
+            <a href="/about" class="btn btn-outline-dark w-100">Learn More</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

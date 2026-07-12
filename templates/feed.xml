@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>{{ site.name }}</title>
+        <description>{{ site.description }}</description>
+        <link>{{ site.url }}</link>
+        <atom:link href="{{ site.url }}/feed.xml" rel="self" type="application/rss+xml" />
+        <language>id-ID</language>
+        <lastBuildDate>{{ posts[0].date.strftime('%a, %d %b %Y %H:%M:%S +0000') if posts else now }}</lastBuildDate>
+        <generator>PyCora SSG</generator>
+        
+        {% for post in posts %}
+        <item>
+            <title>{{ post.metadata.title }}</title>
+            <description><![CDATA[{{ post.content }}]]></description>
+            <link>{{ site.url }}/blog/{{ post.metadata.slug }}/</link>
+            <guid>{{ site.url }}/blog/{{ post.metadata.slug }}/</guid>
+            <pubDate>{{ post.date.strftime('%a, %d %b %Y %H:%M:%S +0000') }}</pubDate>
+            {% for tag in post.metadata.tags %}
+            <category>{{ tag }}</category>
+            {% endfor %}
+            {% if post.metadata.author %}
+            <author>{{ post.metadata.author }}</author>
+            {% endif %}
+        </item>
+        {% endfor %}
+    </channel>
+</rss>

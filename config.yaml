@@ -1,0 +1,89 @@
+site:
+  name: PYCORA
+  description: Static Site Generator with Python - Fast, Minimal, Elegant
+  url: http://localhost:8000
+  author: Axcora
+  twitter_username: https://www.axcora.com
+  image: /img/axcoranewlogored.png
+  favicon: /img/axcoranewlogored.png
+  
+  nav:
+    title: PYCORA
+    list:
+      - name: Home
+        url: /
+      - name: About
+        url: /about
+      - name: Docs
+        url: https://pycora.axcora.com/docs
+      - name: Blog
+        url: /blog
+      - name: Support
+        url: https://pycora.axcora.com/donate
+      - name: Download
+        url: https://creativitaz.gumroad.com/l/pycora
+    button:
+      text: Github
+      icon: fab fa-github
+      url: https://github.com/mesinkasir/pycora
+        
+  hero:
+    icon: fas fa-code
+    info: Static Site Generator
+    title: Write
+    sub_title: Content
+    title2: in Markdown
+    text: "Pycora Python Static Site Generator. Built with Python, fast, minimal, and elegant."
+    button1: 
+      text: Read Docs
+      url: https://pycora.axcora.com/docs/
+    button2: 
+      text: Download
+      url: https://github.com/mesinkasir/pycora
+    terminal: 
+      title: Quick Start
+      info: "Simple. Fast. Elegant. Python SSG by Axcora Technology"
+      list: 
+        - text: "$ git clone https://github.com/mesinkasir/pycora"
+        - text: "$ python install.py"
+        - text: "$ python run.py"
+        - text: "$ 2"
+        - text: "$ Building site..."
+        - text: "$ Pycora is ready for Deploy !!"
+
+  features:
+    title: Why Choose PyCora?
+    subtitle: Everything you need to build a beautiful static site
+    list:
+      - icon: "fas fa-bolt text-primary"
+        title: "Lightning Fast"
+        text: "Pure static HTML. No database. No server-side processing. Blazing fast load times."      
+      - icon: "fas fa-feather text-success"
+        title: "Markdown + YAML"
+        text: "Write content in Markdown with powerful YAML frontmatter. Simple and intuitive."      
+      - icon: "fas fa-paint-brush text-warning"
+        title: "Beautiful Typography"
+        text: "Clean, readable, and elegant design with best typography practices for great reading experience."      
+  
+  footer:
+    list:
+      - name: Github
+        icon: fab fa-github
+        url: https://github.com/mesinkasir
+      - name: Fiverr
+        icon: fab fa-drupal
+        url: https://fiverr.com/creativitas
+      - name: Axcora
+        icon: fab fa-angular
+        url: https://axcora.com
+      - name: Blog
+        icon: fab fa-react
+        url: https://axcora.my.id
+      - name: Feed
+        icon: fas fa-feed
+        url: /feed.xml
+      - name: Sitemap
+        icon: fas fa-sitemap
+        url: /sitemap.xml
+
+

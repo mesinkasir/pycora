@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article class="post-detail mt-5">
+    <!-- ===== POST HEADER ===== -->
+    <header class="post-header">
+        <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="badge bg-dark  fw-normal">
+                <i class="far fa-calendar me-1"></i>
+                {{ post.date.strftime('%B %d, %Y') }}
+            </span>
+            <span class="badge bg-dark fw-normal">
+                <i class="far fa-clock me-1"></i>
+                {{ post.content|wordcount // 200 + 1 }} min read
+            </span>
+        </div>
+        
+        <h1 class="post-title"><a class="text-gradient text-decoration-none" 
+		href="{{ site.url }}/blog/{{post.metadata.slug}}">
+		{{ post.metadata.title }}
+		</a></h1>
+        
+        <div class="post-meta mt-3">
+            {% if post.metadata.author %}
+            <span>
+                <i class="fas fa-user-circle me-1"></i>
+                By <span class="author">{{ post.metadata.author }}</span>
+            </span>
+            {% endif %}
+            
+            {% if post.metadata.tags %}
+            <span class="ms-3">
+                <i class="fas fa-tags me-1"></i>
+                {% for tag in post.metadata.tags %}
+                <a href="/tags/{{ tag }}" class="text-decoration-none text-muted ">
+                    #{{ tag }}{% if not loop.last %}, {% endif %}
+                </a>
+                {% endfor %}
+            </span>
+            {% endif %}
+        </div>
+    </header>
+    
+            {% if post.image %}
+			<img class="img-fluid rounded-3 mt-3 mb-5 shadow-sm" alt="{{post.title}}"
+			width="100%" height="100%" 
+			src="{{post.image}}"/>
+			{% endif %}
+    
+    <div class="post-content">
+        {{ content|safe }}
+    </div>
+    
+    <!-- ===== POST NAVIGATION ===== -->
+    <div class="post-nav">
+        {% if prev_post %}
+        <a href="/blog/{{ prev_post.slug }}" class="nav-link text-start">
+            <span class="label"><i class="fas fa-arrow-left me-1"></i> Previous Post</span>
+            <span class="title">{{ prev_post.metadata.title }}</span>
+        </a>
+        {% else %}
+        <span></span>
+        {% endif %}
+        
+        {% if next_post %}
+        <a href="/blog/{{ next_post.slug }}" class="nav-link text-end">
+            <span class="label">Next Post <i class="fas fa-arrow-right ms-1"></i></span>
+            <span class="title">{{ next_post.metadata.title }}</span>
+        </a>
+        {% endif %}
+    </div>
+</article>
+
+<!-- ===== RELATED POSTS ===== -->
+{% if related_posts %}
+<section class="mt-5">
+    <h4 class="fw-bold mb-4">Related Posts</h4>
+    <div class="row g-4">
+        {% for related in related_posts[:3] %}
+        <div class="col-md-4">
+            <div class="blog-card h-100" style="padding: 1.5rem;">
+                <a href="/blog/{{ related.slug }}" class="post-title" style="font-size: 1.1rem;">
+                    {{ related.metadata.title }}
+                </a>
+                <p class=" small mt-2">
+                    <i class="far fa-calendar me-1"></i>
+                    {{ related.date.strftime('%b %d, %Y') }}
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+{% endblock %}

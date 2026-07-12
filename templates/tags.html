@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="fw-bold mb-4 mt-5">Tags</h1>
+<p class="text-secondary mb-5">Browse all posts by tags.</p>
+
+<div class="row g-4">
+    {% for tag, posts in tags.items() %}
+    <div class="col-lg-4 col-md-6">
+        <div class="blog-card h-100">
+            <div class="d-flex justify-content-between align-items-start">
+                <h5 class="fw-bold mb-2">
+                    <a href="/tags/{{ tag }}" class="text-decoration-none text-dark">
+                        #{{ tag }}
+                    </a>
+                </h5>
+                <span class="badge bg-secondary">{{ posts|length }}</span>
+            </div>
+            <p class="text-secondary small">
+                {{ posts|length }} post{% if posts|length > 1 %}s{% endif %}
+            </p>
+            <div class="mt-2">
+                {% for post in posts[:3] %}
+                <a href="/blog/{{ post.slug }}" class="text-secondary small d-block">
+                    {{ post.metadata.title }}
+                </a>
+                {% endfor %}
+                {% if posts|length > 3 %}
+                <a href="/tags/{{ tag }}" class="text-primary small">+{{ posts|length - 3 }} more</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

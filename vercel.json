@@ -1,0 +1,5 @@
+{
+  "buildCommand": "python ssg.py",
+  "outputDirectory": "output",
+  "installCommand": "pip install python-frontmatter markdown PyYAML Jinja2"
+}

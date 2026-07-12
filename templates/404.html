@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}404 - Page Not Found | {{ site.name }}{% endblock %}
+
+{% block description %}Page not found on {{ site.name }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center min-vh-75 align-items-center">
+    <div class="col-lg-8 text-center py-5">
+        <!-- 404 Illustration -->
+        <div class="mb-5 position-relative">
+            <div class="display-1 fw-bold text-gradient" style="font-size: 8rem; line-height: 1;">
+                4
+                <span class="position-relative d-inline-block">
+                    <i class="fas fa-compass text-primary" style="font-size: 6rem;"></i>
+                    <span class="position-absolute top-0 start-50 translate-middle-x text-dark" style="font-size: 4rem; margin-top: 0.5rem;">0</span>
+                </span>
+                4
+            </div>
+        </div>
+        
+        <h1 class="display-4 fw-bold mb-3">Page Not Found</h1>
+        <p class="lead text-secondary mb-4" style="max-width: 500px; margin: 0 auto;">
+            Oops! The page you're looking for doesn't exist or has been moved.
+        </p>
+        
+        
+        <div class="divider mx-auto my-4" style="width: 60px; height: 3px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 2px;"></div>
+        
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-8">
+                <div class="input-group shadow-sm">
+                    <input type="text" class="form-control form-control-lg" placeholder="Search for content..." id="searchInput">
+                    <button class="btn btn-primary btn-lg" onclick="searchSite()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-5">
+            <a href="/" class="btn btn-primary btn-lg px-5 py-3 rounded-pill me-3">
+                <i class="fas fa-home me-2"></i>Back to Home
+            </a>
+            <a href="/blog" class="btn btn-outline-secondary btn-lg px-5 py-3 rounded-pill">
+                <i class="fas fa-blog me-2"></i>Browse Blog
+            </a>
+        </div>
+        
+        {% if posts %}
+        <div class="mt-5 pt-4 border-top">
+            <h5 class="fw-bold mb-4">Popular Articles</h5>
+            <div class="row g-3 text-start">
+                {% for post in posts[:3] %}
+                <div class="col-md-4">
+                    <a href="/blog/{{ post.slug }}" class="text-decoration-none text-dark">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body">
+                                <h6 class="fw-bold mb-1">{{ post.metadata.title }}</h6>
+                                <small class="text-secondary">{{ post.date.strftime('%b %d, %Y') }}</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+function searchSite() {
+    const query = document.getElementById('searchInput').value.trim();
+    if (query) {
+        window.location.href = '/search?q=' + encodeURIComponent(query);
+    }
+}
+</script>
+{% endblock %}

@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="py-5 mt-3">
+    <div class="row align-items-center min-vh-75">
+        <div class="col-lg-7">
+            <span class="badge bg-primary bg-opacity-10 text-dark px-4 py-2 rounded-pill mb-4">
+                <i class="{{site.hero.icon}} me-2"></i>{{site.hero.info}}
+            </span>
+            <h1 class="display-2 fw-bold mb-4">
+                {{site.hero.title}} <span class="text-gradient">{{site.hero.sub_title}}</span><br>
+                {{site.hero.title2}}
+            </h1>
+            <p class="lead " style="max-width: 500px;">
+                {{site.hero.text}}
+            </p>
+            <div class="mt-3 mb-3">
+                <a href="{{site.hero.button1.url}}" class="btn btn-dark btn-lg px-5 py-3 mt-1 mb-1 rounded-pill me-3">
+                    <i class="fas fa-arrow-right me-2"></i>{{site.hero.button1.text}}
+                </a>
+                <a href="{{site.hero.button2.url}}" class="btn btn-outline-dark btn-lg px-5 mt-1 mb-1  py-3 rounded-pill">
+                    <i class="fas fa-arrow-down me-2"></i>{{site.hero.button2.text}}
+                </a>
+            </div>
+            
+            <!-- Stats -->
+            <div class="row mt-5 g-4">
+                <div class="col-auto">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-primary bg-opacity-10 rounded-circle p-3 me-3">
+                            <i class="fas fa-pen-fancy fa-2x text-primary"></i>
+                        </div>
+                        <div>
+                            <strong class="d-block h4 mb-0">{{ posts|length }}+</strong>
+                            <small class="">Articles</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-success bg-opacity-10 rounded-circle p-3 me-3">
+                            <i class="fas fa-tag fa-2x  text-success"></i>
+                        </div>
+                        <div>
+                            <strong class="d-block h4 mb-0">{{ tags|length }}+</strong>
+                            <small class="">Tags</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="bg-white p-4 rounded-4 shadow-sm border">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="bg-primary bg-opacity-10 rounded-circle p-2 me-2">
+                        <i class="fas fa-terminal text-primary"></i>
+                    </div>
+                    <span class="fw-semibold">{{site.hero.terminal.title}}</span>
+                </div>
+                <pre class="bg-dark text-light p-3 rounded-3" style="font-size: 0.8rem;">
+{% for t in site.hero.terminal.list %}{{t.text}}<br/>{% endfor %}</pre>
+                <small class="">{{site.hero.terminal.info}}</small>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="row g-4">
+		<div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">{{site.features.title}}</h2>
+		</div>
+        {% for f in site.features.list %}<div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-4">
+                    <div class="bg-primary bg-opacity-10 rounded-circle p-3 d-inline-block mb-3">
+                        <i class="{{f.icon}} fs-4"></i>
+                    </div>
+                    <h3 class="fw-bold h5">{{f.title}}</h3>
+                    <p class="">{{f.text}}</p>
+                </div>
+            </div>
+        </div>{% endfor %}		
+ </div>
+</section>
+
+<section class="py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">Latest Articles</h2>
+        <a href="/blog" class="text-decoration-none text-dark">View All →</a>
+    </div>
+    
+    <div class="row g-4">
+        {% for post in posts[:3] %}
+        <div class="col-md-4">
+            <div class="blog-card h-100">
+                <div class="d-flex align-items-center mb-3">
+                    <span class="badge bg-dark fw-normal">
+                        <i class="far fa-calendar me-1"></i>
+                        {{ post.date.strftime('%b %d, %Y') }}
+                    </span>
+                    {% if post.metadata.author %}
+                    <span class="badge bg-dark text-white  fw-normal ms-2">
+                        <i class="far fa-user me-1"></i>
+                        {{ post.metadata.author }}
+                    </span>
+                    {% endif %}
+                </div>
+                <a href="/blog/{{ post.slug }}" class="post-title">
+                    {{ post.metadata.title }}
+                </a>
+				{% if post.metadata.image %}
+				<a href="/blog/{{ post.slug }}"><img class="img-fluid rounded-3 mt-3" 
+				alt="{{ post.metadata.title }}" 
+				src="{{ post.metadata.image }}"
+				width="100%"
+				height="100%"
+				/></a>
+				{% endif %}
+                <p class="post-excerpt">{{ post.metadata.excerpt|default(post.content|striptags|truncate(100)) }}</p>
+                <div class="post-tags mt-3">
+                    {% for tag in post.metadata.tags[:3] %}
+                    <a href="/tags/{{ tag }}" class="tag bg-dark text-white">#{{ tag }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">Explore Tags</h2>
+        <a href="/tags" class="text-decoration-none text-dark">All Tags →</a>
+    </div>
+    
+    <div class="d-flex flex-wrap gap-2">
+        {% for tag, tag_posts in tags.items() %}
+        <a href="/tags/{{ tag }}" class="btn btn-outline-dark">
+            #{{ tag }} ({{ tag_posts|length }})
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
