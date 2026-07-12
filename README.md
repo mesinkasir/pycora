@@ -459,7 +459,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 | 🌐 Website | [pycora.axcora.com](https://pycora.axcora.com) |
 | 💻 GitHub | [mesinkasir](https://github.com/mesinkasir) |
 | 📧 Email | [axcora@gmail.com](mailto:axcora@gmail.com) |
-| 👨‍ Consult | [Hire Us](https://fiverr.com/creativitas) |
+| 👨‍ Consult | [Hire Us](https://www.fiverr.com/creativitas/design-your-modern-website-using-jekyll) |
 
 ---
 
