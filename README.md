@@ -5,6 +5,8 @@
 
 Read Docs: [https://pycora.axcora.com/docs](https://pycora.axcora.com/docs)
 
+![Pycora Python SSG](mockup.png)
+
 ---
 
 ## 📖 Table of Contents
