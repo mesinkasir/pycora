@@ -482,6 +482,6 @@ Read Docs: [https://pycora.axcora.com/docs](https://pycora.axcora.com/docs)
 
 <div align="center">
 
-**Made with ❤️ by [Axcora Technology](https://axcora.com)**
+**Made with ❤️ by [Axcora](https://axcora.com)**
 
 </div>
