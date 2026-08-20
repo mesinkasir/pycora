@@ -1,5 +1,5 @@
 {
-  "buildCommand": "python ssg.py",
+  "buildCommand": "pip install python-frontmatter markdown PyYAML Jinja2 && python3 ssg.py",
   "outputDirectory": "output",
-  "installCommand": "pip install python-frontmatter markdown PyYAML Jinja2"
+  "framework": null
 }
