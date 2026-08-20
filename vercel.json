@@ -1,5 +1,5 @@
 {
-  "installCommand": "pip3 install python-frontmatter markdown PyYAML Jinja2",
+  "installCommand": "pip3 install --break-system-packages python-frontmatter markdown PyYAML Jinja2",
   "buildCommand": "python3 ssg.py",
   "outputDirectory": "output",
   "framework": null
