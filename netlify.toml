@@ -1,16 +1,12 @@
 [build]
-  command = "python ssg.py"
+  command = "pip install python-frontmatter markdown PyYAML Jinja2 && python ssg.py"
   publish = "output"
 
 [build.environment]
   PYTHON_VERSION = "3.10"
 
+# ini doang yang bener buat 404
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/404.html"
   to = "/404.html"
   status = 404
