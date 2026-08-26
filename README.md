@@ -1,5 +1,8 @@
 # 🚀 PyCora - Static Site Generator
 
+## NYI BLORONG VERSION
+
+![PYTHON SSG NYI BLORONG VERISION PYCORA](nyiblorong.webp)
 
 **Python • Markdown • YAML • Fast • Minimal • Elegant**
 
