@@ -12,6 +12,16 @@ Read Docs: [https://pycora.axcora.com/docs](https://pycora.axcora.com/docs)
 
 ---
 
+## Support & Donate
+
+If you like this project, please support:
+
+- PayPal: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JVZVXBC4N9DAN
+- Gumroad Coffee: https://creativitaz.gumroad.com/coffee
+- GitHub Sponsors: https://github.com/sponsors/mesinkasir
+
+---
+
 ## 📖 Table of Contents
 
 - [✨ Features](#-features)
