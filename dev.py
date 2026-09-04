@@ -48,7 +48,7 @@ def get_port():
                             return int(port)
     except:
         pass
-    return 4000
+    return 8000
 
 VERSION = "PYCORA MEDUSA v2.3.0"
 build_timestamp = str(time.time())
