@@ -1,0 +1,23 @@
+---
+layout: layouts/base
+---
+<div class="row">
+<div class="col-12 p-2">
+<div class="card p-1">
+{% if image %}
+  <img class="img-fluid shadow cover" width="100%" height="100%" alt="{{title or config.title}}" src="{{image}}" />
+{% endif %}
+<div class="p-5">
+{% if toc %}
+<div class="card p-5 mt-3 mb-3">
+<h4>Table of Contents</h4>
+{{ toc | safe }}
+</div>
+{% endif %}
+{{content |safe}}
+</div>
+</div>
+</div>
+</div>
+</div>
+

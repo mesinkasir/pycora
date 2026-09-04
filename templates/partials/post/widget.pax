@@ -1,0 +1,21 @@
+<div class="col-12 col-lg-4 col-md-4 p-2">
+<div class="card p-2 centered">
+<img class="img-fluid shadow" 
+alt="{{config.about.title}}"
+width="220" height="220"
+src="{{config.about.logo}}"/>
+<div class="p-3 text-center">
+<h3>{{config.about.title}}</h3>
+<p>{{config.about.description}}</p>
+<a href="{{config.about.button.url}}" class="mt-3 full btn btn-primary">{{config.about.button.text}}</a>
+</div>
+</div>
+<div class="card p-2 mt-2">
+<div class="p-3">
+<h3 class="mb-3">Tags</h3>
+{% for t in tags %}
+<a href="/tags/{{ t }}" class="btn btn-outline-secondary btn-sm m-1">#{{ t }}</a>
+{% endfor %}
+</div>
+</div>
+</div>

@@ -9,7 +9,7 @@ tags:
   - tips
   - tutorial
 author: Axcora
-layout: post
+layout: layouts/posts
 ---
 
 # Write your content about second post here

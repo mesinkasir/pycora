@@ -1,0 +1,48 @@
+{% set _site = config.main_url | trim %}
+  {% set _page = page.url or url or "/" %}
+  {% set _canonical = _site.rstrip("/") + _page %}
+  {% set _title = title or config.title %}
+  {% set _desc = description or config.description %}
+  {% set _img = image or config.image %}
+  {% set _img_abs = _img if _img.startswith("http") else _site.rstrip("/") + _img %}
+  {% set _fav = config.favicon if config.favicon.startswith("http") else _site.rstrip("/") + config.favicon %}
+
+  <title>{{ _title }}</title>
+  <meta name="description" content="{{ _desc }}">
+  <meta name="author" content="{{ author or config.author }}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="{{ _canonical }}">
+  <link rel="icon" href="{{ _fav }}" type="image/x-icon">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ _title }}">
+  <meta property="og:description" content="{{ _desc }}">
+  <meta property="og:url" content="{{ _canonical }}">
+  <meta property="og:site_name" content="{{ config.name }}">
+  <meta property="og:image" content="{{ _img_abs }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ _title }}">
+  <meta name="twitter:description" content="{{ _desc }}">
+  <meta name="twitter:image" content="{{ _img_abs }}">
+  <meta name="twitter:site" content="{{ config.twitter_username }}">
+  <meta name="twitter:creator" content="{{ config.twitter_username }}">
+
+  <link rel="alternate" type="application/rss+xml" title="{{ config.name }}" href="{{ _site.rstrip('/') }}/feed.xml">
+  <meta name="generator" content="PyCora Medusa v2.0">
+
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/axcora-css@1.0.1/axcora.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <style>
+    html,body{font-size:16px}
+    .cover{max-width:100%;height:460px;object-fit:cover}
+    .centered {justify-content: center; align-items: center; display: flex;}
+    .full {width: 100%;}
+    .text-white {color: #fff !important;}
+    ul,ol {margin-left: 2.5rem !important;}
+    hr{margin-top: 8px; margin-bottom: 15px;}
+    a {text-decoration:none; color:inherit; font-weight: bold;}
+    @media(max-width:767px){.cover{height:220px}}
+    @media(min-width:768px) and (max-width:1023px){.cover{height:360px}}
+  </style>

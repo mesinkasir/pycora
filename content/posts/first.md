@@ -7,7 +7,7 @@ tags:
   - comparison
   - first
 author: Axcora
-layout: post
+layout: layouts/posts
 ---
 
 # Write your content about first post here

@@ -1,0 +1,35 @@
+<footer class="container mt-2 mb-2">
+<div class="card p-3">
+<div class="row">
+<div class="col-lg-2 col-md-4 col-12 p-3 p-md-1 centered">
+<img class="img-fluid" loading="lazy" width="120" height="120"
+src="{{config.footer.image}}">
+</div>
+<div class="col-lg-6 col-md-8 col-12 p-5 p-md-1">
+<h3>{{config.footer.title}}</h3>
+<p>{{config.footer.text}}</p>
+</div>
+<div class="col-lg-2 col-md-6 col-6 p-5 p-md-1">
+<p>Menu</p>
+<ul class="ms-3">
+{% for item in config.footer.list1 %}
+<li><a href="{{item.url}}">{{item.name}}</a></li>
+{% endfor %}
+</ul>
+</div>
+<div class="col-lg-2 col-md-6 col-6 p-5">
+<p>Support</p>
+<ul class="ms-3">
+{% for item in config.footer.list2 %}
+<li><a href="{{item.url}}">{{item.name}}</a></li>
+{% endfor %}
+</ul>
+</div>
+<div class="col-12 text-center">
+<p>{% for item in config.footer.list3 %}
+<span class="text-muted me-2"><a href="{{item.url}}"><small>{{item.name}}</small></a></span>
+{% endfor %}</p>
+</div>
+</div>
+</div>
+</footer>

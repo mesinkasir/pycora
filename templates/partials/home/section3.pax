@@ -1,0 +1,9 @@
+<section class="card mt-3">
+<div class="row p-3 text-center">
+<div class="col-12 p-4">
+<h3><a href="{{url}}">{{ section3.title }}</a></h3>
+<p>{{ section3.subtitle }}</p>
+<p><small>{{ section3.note }}</small></p>
+</div>
+</div>
+</section>

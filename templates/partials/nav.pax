@@ -1,0 +1,11 @@
+<nav class="container mt-2">
+<div class="navbar rounded-lg p-3">
+  <a class="navbar-brand" href="{{config.url}}">{{config.nav.title}}</a>
+  <button class="navbar-toggler" onclick="document.querySelector('.navbar-collapse').classList.toggle('show')">☰</button>
+  <div class="navbar-collapse mt-2 mb-1">
+    <ul class="navbar-nav">
+      {% for n in config.nav.list %}<li class="nav-item"><a class="nav-link" href="{{n.url}}">{{n.name}}</a></li>{% endfor %}
+    </ul>
+  </div>
+  </div>
+</nav>

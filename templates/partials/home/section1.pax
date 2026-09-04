@@ -1,0 +1,13 @@
+<section class="card mt-3">
+<div class="row p-3 align-items-center">
+<div class="col-lg-7 col-md-12 col-12 p-3">
+<div class="col-lg-10 col-md-10">
+<h2 class="text-3xl font-bold mb-3"><a href="{{url}}">{{ section1.title }}</a></h2>
+<p>{{ section1.description }}</p>
+</div>
+</div>
+<div class="col-lg-5 col-md-12 col-12 p-3">
+<img class="img-fluid shadow" width="100%" height="100%" loading="eager" src="{{ section1.image }}" alt="{{ section1.image_alt }}"/>
+</div>
+</div>
+</section>

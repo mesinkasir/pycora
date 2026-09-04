@@ -1,0 +1,5 @@
+---
+layout: layouts/base
+---
+{% include "partials/blog/list" %}
+{% include "partials/blog/pagination" %}

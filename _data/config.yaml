@@ -1,0 +1,88 @@
+name: PYCORA MEDUSA
+title: Medusa Version - Python SSG Free Collections + Axcora CSS 10kb
+description: Static Site Generator with Python - Fast, Minimal, Elegant - Medusa V2.1.0 with free collections, no hardcode
+main_url: http://localhost:8000
+url: http://localhost:8000
+author: Axcora Technology
+twitter_username: "@axcora"
+image: /img/axcoranewlogored.png
+favicon: /img/axcoranewlogored.png
+logo: /img/axcoranewlogored.png
+
+site_name: PYCORA MEDUSA
+locale: en_US
+type: website
+
+about: 
+  title: Axcora Technology
+  logo: /img/axcoranewlogored.png
+  description: Axcora Technology is a software development company that specializes in creating innovative solutions for businesses and individuals. We are dedicated to delivering high-quality software products and services that meet the unique needs of our clients.
+  button: 
+    text: Visit Axcora
+    url: https://axcora.com
+
+nav:
+  title: MEDUSA Version
+  list:
+    - name: Home
+      url: /
+    - name: About
+      url: /about/
+    - name: Docs
+      url: https://pycora.axcora.com/pages/medusa/docs/
+    - name: Blog
+      url: /blog/
+    - name: Support
+      url: https://pycora.axcora.com/donate/
+    - name: Download
+      url: https://creativitaz.gumroad.com/l/pycora
+    - name: Github
+      url: https://github.com/mesinkasir/pycora
+  button:
+    text: Github
+    url: https://github.com/mesinkasir/pycora
+  button2:
+    text: Download
+    url: https://creativitaz.gumroad.com/l/pycora
+
+footer:
+  image: /img/axcoranewlogored.png
+  title: PYCORA MEDUSA
+  text: Includes example articles, about page, and basic config. Just change the content. Pycora Medusa V2.1.0 • Axcora CSS 10kb • Free Collections • Sitemap + RSS + JSON Feed
+  list1:
+    - name: Home
+      url: /
+    - name: About
+      url: /about/
+    - name: Docs
+      url: https://pycora.axcora.com/pages/medusa/docs/
+    - name: Blog
+      url: /blog/
+    - name: Nyi Blorong
+      url: https://pycora.axcora.com/nyi-blorong-version/
+    - name: Pycora
+      url: https://pycora.axcora.com/
+  list2:
+    - name: Paypal
+      url: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JVZVXBC4N9DAN
+    - name: Coffee
+      url: https://creativitaz.gumroad.com/coffee
+    - name: Sponsor
+      url: https://github.com/sponsors/mesinkasir
+    - name: Github
+      url: https://github.com/mesinkasir
+    - name: Fiverr
+      url: https://fiverr.com/creativitas
+    - name: Axcora
+      url: https://axcora.com
+    - name: Labs
+      url: https://axcora.my.id
+  list3:
+    - name: Atom
+      url: /atom.xml
+    - name: JSON
+      url: /feed.json
+    - name: Feed
+      url: /feed.xml
+    - name: Sitemap
+      url: /sitemap.xml

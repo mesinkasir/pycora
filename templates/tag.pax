@@ -1,18 +1,24 @@
-{% extends "base.html" %}
+---
+layout: layouts/base
+---
 
-{% block content %}
-<div class="row mt-5">
-    <div class="col-lg-8">
+<div class="row p-3">
+    <div class="col-lg-8 card p-3">
+    <div class="p-3 ms-3">
         <h1 class="fw-bold">
             <i class="fas fa-tag me-2"></i>
-            #{{ tag }}
+            <a href="{{page.url}}" class="text-dark fw-bold text-decoration-none h1">#{{ tag }}</a>
         </h1>
-        <p class="text-secondary mb-5">{{ posts|length }} post{% if posts|length > 1 %}s{% endif %}</p>
+        <p class="mb-5  mt-3">
+        <span class="bg-dark text-white rounded-3 p-2">
+        Total : {{ posts|length }} post{% if posts|length > 1 %}s{% endif %}
+        </span></p>
+        </div>
         
         {% for post in posts %}
-        <article class="blog-card">
+        <article class="blog-card p-3 mb-3 card">
             <div class="d-flex flex-wrap gap-2 mb-3">
-                <span class="badge bg-dark text-white text-secondary fw-normal">
+                <span class="badge bg-dark text-white text-secondary fw-normal me-2">
                     <i class="far fa-calendar me-1"></i>
                     {{ post.date.strftime('%B %d, %Y') }}
                 </span>
@@ -24,18 +30,18 @@
                 {% endif %}
             </div>
             
-            <a href="/blog/{{ post.slug }}" class="post-title">
+            <a href="{{ post.url }}" class="post-title">
                 {{ post.metadata.title }}
             </a>
 			{% if post.metadata.image %}
-            <a href="/blog/{{ post.slug }}">
-                <img class="img-fluid rounded-3" width="100%" height="100%" alt="{{ post.metadata.title }}"
+            <a href="{{ post.url }}">
+                <img class="img-fluid rounded-3 mt-2 mb-3" width="100%" height="100%" alt="{{ post.metadata.title }}"
 				src="{{post.metadata.image}}"/>
             </a>
 			{% endif %}
             
             <p class="post-excerpt">
-                {{ post.metadata.excerpt|default(post.content|striptags|truncate(150)) }}
+                {{ post.metadata.description|default(post.content|striptags|truncate(150)) }}
             </p>
             
             <div class="post-tags">
@@ -48,14 +54,13 @@
     </div>
     
     <div class="col-lg-4">
-        <div class="blog-card">
-            <h5 class="fw-bold mb-3">All Tags</h5>
+        <div class="blog-card  card p-3">
+            <h3 class="fw-bold mb-3">All Tags</h3>
             <div class="d-flex flex-wrap gap-2">
                 {% for t in all_tags %}
-                <a href="/tags/{{ t }}" class="tag text-secondary">#{{ t }}</a>
+                <a href="/tags/{{ t }}" class="btn btn-dark btn-sm text-white mt-1 mb-1 me-1">#{{ t }}</a>
                 {% endfor %}
             </div>
         </div>
     </div>
 </div>
-{% endblock %}
