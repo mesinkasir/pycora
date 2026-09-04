@@ -1,0 +1,26 @@
+<div class="col-12 col-lg-8 col-md-8 p-2">
+<div class="card p-2">
+<img class="img-fluid shadow" 
+	src="{{image or config.image}}"/>
+    <div class="p-5">
+    {% if toc %}
+<div class="card p-5 mt-3 mb-3">
+<h4>Table of Contents</h4>
+{{ toc | safe }}
+</div>
+{% endif %}
+{{content| safe }}
+</div>
+	
+<ul class="pagination">
+  <li class="page-item">{% if prev_post %}
+    <a class="page-link" href="{{prev_post.url}}">Previous</a>
+    {% endif %}
+  </li>
+    <li class="page-item">{% if next_post %}
+        <a class="page-link" href="{{ next_post.url }}">Next</a>
+        {% endif %}
+    </li>
+</ul>
+</div>
+</div>

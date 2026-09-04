@@ -1,0 +1,9 @@
+name: PYCORA
+title: Pycora
+description: Static Site Generator with Python - Fast, Minimal, Elegant
+url: http://localhost:8000
+about_url: /about/
+author: Axcora
+twitter_username: https://www.axcora.com
+image: /img/axcoranewlogored.webp
+favicon: /img/axcoranewlogored.webp

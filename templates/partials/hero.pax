@@ -1,0 +1,14 @@
+<header class="container mt-3 mb-3">
+<div class="hero">
+  <div class="hero-content">
+    <h1><a href="{{url}}">{{title or hero.title}}</a></h1>
+    <p>{{description or hero.description}}</p>
+    {% if hero.button1.url %}<div class="hero-actions">
+      <a href="{{hero.button1.url}}" 
+      class="btn btn-warning">{{hero.button1.text}}</a>
+      <a href="{{hero.button2.url}}" 
+      class="btn btn-dark">{{hero.button2.text}}</a>
+    </div>{% endif %}
+  </div>
+</div>
+</header>

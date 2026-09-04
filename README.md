@@ -1,487 +1,371 @@
-# 🚀 PyCora - Static Site Generator
+# 🐍 PyCora MEDUSA v2.4.8 - Static Site Generator
 
+## The Medusa Version
 
-**Python • Markdown • YAML • Fast • Minimal • Elegant**
+![PYTHON SSG MEDUSA VERSION PYCORA](medusa.webp)
+
+**Python • Markdown • YAML • PAX Templating • Fast • Nested Collections • All Tags Support**
+
+> Medusa is the advanced engine of PyCora with PAX templating, aggressive layout fallback, and true nested content support.
 
 Read Docs: [https://pycora.axcora.com/docs](https://pycora.axcora.com/docs)
 
-![Pycora Python SSG](mockup.png)
+![Pycora Python Static Site Generator](shoot.webp)
 
 ---
 
-## 📖 Table of Contents
+## Support & Donate
 
-- [✨ Features](#-features)
-- [📋 Requirements](#-requirements)
-- [🚀 Quick Start](#-quick-start)
-- [📖 Usage](#-usage)
-- [📁 Project Structure](#-project-structure)
-- [📝 Content Format](#-content-format)
-- [⚙️ Configuration](#️-configuration)
-- [🎨 Customization](#-customization)
-- [🌐 Deployment](#-deployment)
-- [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
-- [🙏 Credits](#-credits)
-- [📞 Contact](#-contact)
+If you like this project, please support:
+
+- PayPal: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JVZVXBC4N9DAN
+- Gumroad Coffee: https://creativitaz.gumroad.com/coffee
+- GitHub Sponsors: https://github.com/sponsors/mesinkasir
 
 ---
 
-## ✨ Features
+## 🔥 What's New in MEDUSA v2.4.8
 
-| Feature | Description |
-|---------|-------------|
-| ⚡ **Lightning Fast** | Pure static HTML, no database, no server-side processing |
-| 📝 **Markdown + YAML** | Write content in Markdown with powerful YAML frontmatter |
-| 🏷️ **Tags & Categories** | Automatic tag generation from your content |
-| 📄 **Pagination** | Built-in blog pagination |
-| 🔍 **SEO Ready** | Meta tags, Open Graph, Twitter Cards, Sitemap, RSS feed |
-| 🎨 **Beautiful Typography** | Clean, readable design with best typography practices |
-| 📱 **Responsive** | Mobile-first design with Bootstrap 5 |
-| 🔥 **Live Development** | Auto-rebuild on file changes |
-| 🗺️ **Sitemap & RSS** | Automatic sitemap.xml and feed.xml generation |
-| 🎯 **Zero Dependencies** | Minimal dependencies, lightweight |
+| Fix | Description |
+|-----|-------------|
+| ✅ **Nested Posts** | `content/posts/*.md` AND `content/posts/hello/*.md` both work - all files go into `collections['posts']` |
+| ✅ **Tags ALL Support** | Supports `tags: - a - b`, `tags: ['a','b']`, `tags: a, b`, `tags: single` - all YAML formats |
+| ✅ **Plural/Singular Layout** | `layout: layouts/post` and `layout: layouts/posts` both auto-resolve to same template |
+| ✅ **Aggressive PAX Loader** | Finds `post.pax` anywhere: `templates/medusa/post.pax`, `templates/layouts/post.pax`, `templates/post.pax` |
+| ✅ **Silent Fallback Chain** | If `layouts/post` not found → auto fallback to `medusa/post` → `medusa/default` → `layouts/default` → `page` |
+| ✅ **ChainableUndefined** | No more crash on `{{config.about.logo}}` if config missing - renders empty |
+| ✅ **Slice Fix** | `related_posts[:3]` auto-converted to `| limit(3)` for Jinja2 |
+
+**Build result: `Ready in 0.87s - 41 files - MEDUSA v2.4.6`**
 
 ---
 
 ## 📋 Requirements
 
-- **Python** 3.8 or higher
-- **pip** (Python package manager)
-- **Git** (optional, for cloning)
+- Python 3.8+ (tested on 3.13)
+- `pip install jinja2 markdown pyyaml`
+
+```bash
+python install.py
+# or
+pip install -r requirements.txt
+```
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start - Medusa Edition
 
-### 1. Clone the repository
-
+### 1. Clone
 ```bash
 git clone https://github.com/mesinkasir/pycora.git
 cd pycora
 ```
 
-### 2. Install dependencies (One command)
-
-```bash
-python install.py
-```
-
-### 3. Run the site
-
-```bash
-python run.py
-```
-
-### 4. Build the site
-
-```bash
-python ssg.py
-```
-
-### 5. Preview locally
-
-```bash
-python dev.py
-```
-
-**Or using npm:**
-
-```bash
-npm run dev
-```
-
----
-
-## 📖 Usage
-
-### 🏗️ Build Site
-
-```bash
-python ssg.py
-```
-
-Generates the static site in the `output/` directory.
-
-**Output:**
-```
-🚀 Building site...
-✅ Selesai! 2 posts, 2 tags.
-📁 Output di folder: output/
-```
-
----
-
-### 🔥 Development Server (Auto-rebuild)
-
-```bash
-python dev.py
-```
-
-Starts a local server with auto-rebuild on file changes.
-
-**Features:**
-- Auto-rebuild when files change
-- Live preview at `http://localhost:8000`
-- Watch: `content/`, `templates/`, `static/`
-
----
-
-### 🎯 Menu Interface
-
-```bash
-python run.py
-```
-
-Interactive menu for all commands:
-
-```
-  [1] Build site (ssg.py)
-  [2] Development server (dev.py)
-  [3] Install/Update dependencies
-  [4] Exit
-```
-
----
-
-### 📦 NPM Scripts
-
-```bash
-npm run build   # Build site
-npm run dev     # Development server
-npm run serve   # Serve output directory
-npm run menu    # Menu interface
-npm run install # Install dependencies
-```
-
----
-
-## 📁 Project Structure
-
+### 2. Check Structure
 ```
 pycora/
 ├── content/
-│   ├── posts/           # Blog posts (Markdown + YAML)
-│   │   └── 2024-01-01-hello-world.md
-│   └── pages/           # Static pages (Markdown + YAML)
-│       └── about.md
-│
-├── templates/           # Jinja2 templates
-│   ├── base.html        # Base layout
-│   ├── landing.html     # Homepage
-│   ├── blog.html        # Blog listing
-│   ├── post.html        # Single post
-│   ├── page.html        # Static page
-│   ├── tags.html        # Tags index
-│   ├── tag.html         # Tag detail
-│   ├── feed.xml         # RSS feed template
-│   └── sitemap.xml      # Sitemap template
-│
-├── static/              # Static assets
-│   ├── css/
-│   │   ├── bs.css
-│   │   └── main.css
-│   ├── images/
-│   └── js/
-│
-├── output/              # Generated site (build output)
-│   ├── index.html
-│   ├── blog/
-│   ├── tags/
-│   ├── feed.xml
-│   └── sitemap.xml
-│
-├── ssg.py               # Main builder
-├── dev.py               # Development server
-├── install.py           # Dependency installer
-├── run.py               # Menu interface
-├── config.yaml          # Site configuration
-├── package.json         # NPM scripts
-├── requirements.txt     # Python dependencies
-└── README.md            # This file
+│   ├── posts/               # Flat: posts/hello.md
+│   │   ├── first.md
+│   │   └── nested/          # Nested: posts/nested/world.md - WAJIB JALAN!
+│   │       └── world.md
+│   └── index.md
+├── templates/
+│   ├── medusa/              # Medusa templates
+│   │   ├── default.pax      # Base layout
+│   │   └── post.pax         # Post layout (layout: medusa/default)
+│   ├── layouts/
+│   │   ├── default.pax
+│   │   └── post.pax         # Alternative post layout
+│   └── partials/
+├── static/
+├── config.yaml
+├── ssg.py                   # MEDUSA v2.4.8 engine
+└── output/
 ```
 
----
-
-## 📝 Content Format
-
-### 📄 Blog Post (Markdown + YAML)
-
-**File:** `content/posts/2024-01-01-hello-world.md`
-
-```markdown
----
-title: Hello World
-description: Welcome to my blog
-date: 2024-01-01
-author: Your Name
-tags:
-  - python
-  - ssg
-  - markdown
-image: /images/hello-world.jpg
-layout: post
----
-
-# Welcome to My Blog
-
-This is my first post using PyCora.
-
-## Why Static?
-
-- **Fast** - No database queries
-- **Secure** - No vulnerabilities
-- **Simple** - Write in Markdown
-
-```python
-print("Hello, PyCora!")
-```
-
-### Features
-
-- ✅ Markdown with YAML frontmatter
-- ✅ Beautiful typography
-- ✅ Tags & categories
-- ✅ Pagination
-- ✅ Next/Previous posts
-- ✅ Responsive design
-```
-
----
-
-### 📄 Static Page
-
-**File:** `content/pages/about.md`
-
-```markdown
----
-title: About Me
-description: Learn more about me
-date: 2024-01-01
-layout: page
----
-
-# About Me
-
-This is the about page.
-```
-
----
-
-## ⚙️ Configuration
-
-### `config.yaml`
-
-```yaml
-site:
-  name: PyCora
-  description: Static Site Generator with Python
-  url: http://localhost:8000
-  author: Your Name
-  twitter_username: yourusername
-
-  nav:
-    list:
-      - name: Home
-        url: /
-      - name: Blog
-        url: /blog
-      - name: About
-        url: /about
-
-  hero:
-    icon: fas fa-code
-    info: Static Site Generator
-    title: Write
-    sub_title: Content
-    title2: in Markdown
-    text: "Static Site Generator with Python - Fast, Minimal, Elegant."
-    button1:
-      text: Read blog
-      url: /blog/
-    button2:
-      text: Learn More
-      url: /about/
-    terminal:
-      title: Quick Start
-      info: "Simple. Fast. Elegant."
-      list:
-        - text: "$ python ssg.py build"
-        - text: "$ Building site..."
-        - text: "$ Pycora is ready for Deploy !!"
-
-  features:
-    title: A Features
-    list:
-      - icon: "fas fa-bolt text-primary"
-        title: Lightning Fast
-        text: "Pure static HTML. No database. No server-side processing."
-      - icon: "fas fa-feather text-success"
-        title: "Markdown + YAML"
-        text: "Write in Markdown with YAML frontmatter. Simple and powerful."
-      - icon: "fas fa-paint-brush text-warning"
-        title: "Beautiful Typography"
-        text: "Clean, readable, and elegant design with best typography practices."
-
-  footer:
-    list:
-      - name: Github
-        icon: fab fa-github
-        url: https://github.com/yourusername
-      - name: Twitter
-        icon: fab fa-twitter
-        url: https://twitter.com/yourusername
-```
-
----
-
-## 🎨 Customization
-
-### 🎨 CSS
-Place your custom CSS in `static/css/main.css`
-
-### 📁 Templates
-Edit Jinja2 templates in the `templates/` directory:
-
-| Template | Description |
-|----------|-------------|
-| `base.html` | Base layout with navbar, footer, SEO meta |
-| `landing.html` | Homepage with hero, features, latest posts |
-| `blog.html` | Blog listing with pagination |
-| `post.html` | Single post with author, tags, next/prev |
-| `page.html` | Static page layout |
-| `tags.html` | Tags index page |
-| `tag.html` | Posts filtered by tag |
-
-### 📁 Static Assets
-Add images, fonts, or other assets to the `static/` directory.
-
-### 🔧 SEO & Social
-Edit `base.html` to customize:
-- Open Graph tags
-- Twitter Cards
-- Meta descriptions
-- Canonical URLs
-- Favicon
-
----
-
-## 🌐 Deployment
-
-### 📦 GitHub Pages
-
+### 3. Build
 ```bash
-# Build the site
 python ssg.py
-
-# Push output/ directory to gh-pages branch
-git subtree push --prefix output origin gh-pages
+# Output: Ready in 0.87s - 41 files - MEDUSA v2.4.6
 ```
 
-### 🚀 Netlify / Vercel
-
+### 4. Dev
 ```bash
-# Build the site
-python ssg.py
-
-# Deploy the output/ directory
-# Drag and drop output/ folder to Netlify/Vercel dashboard
-```
-
-### ☁️ Any Static Hosting
-
-Just upload the `output/` directory to any static hosting service:
-- **Netlify**
-- **Vercel**
-- **GitHub Pages**
-- **Cloudflare Pages**
-- **AWS S3**
-- **Firebase Hosting**
-- **Cpanel Hosting**
-
----
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing`)
-5. Open a Pull Request
-
-### Development Workflow
-
-```bash
-# Clone your fork
-git clone https://github.com/yourusername/pycora.git
-
-# Install dependencies
-python install.py
-
-# Start development server
 python dev.py
-
-# Build for production
-python ssg.py
+# http://localhost:8000 with HMR
 ```
 
 ---
 
-## 📄 License
+## 📝 Content Format - Medusa Supports ALL
 
-MIT License - see [LICENSE](LICENSE) file for details.
+### Flat Post
+`content/posts/first.md`
+```markdown
+---
+title: The First Post
+date: 2024-01-20
+image: https://images.unsplash.com/photo-...?w=800
+tags:
+  - comparison
+  - first
+author: Axcora
+layout: layouts/post
+---
+
+# Content here
+```
+
+### Nested Post - WAJIB JALAN!
+`content/posts/tutorial/hello.md`
+```markdown
+---
+title: Nested Tutorial
+date: 2026-08-26
+tags: ['pycora', 'medusa', 'axcora-css', 'bootstrap', 'performance']
+layout: layouts/posts
+---
+
+Content nested
+```
+> Both `posts/*.md` and `posts/tutorial/*.md` are included in `collections['posts']` and get prev/next/related.
+
+### Tags - ALL Formats Supported
+```yaml
+# Multiline list (recommended)
+tags:
+  - comparison
+  - first
+
+# Inline array
+tags: ['pycora', 'medusa', 'axcora-css', 'bootstrap', 'performance']
+
+# Comma separated string
+tags: pycora, medusa, bootstrap
+
+# Single tag
+tags: single-tag
+```
 
 ---
 
-## 🙏 Credits
+## 🎨 Templating - PAX Engine
 
-### 📚 Libraries & Frameworks
+Medusa uses `.pax` files (Jinja2 + PAX fixes).
 
-| Library | Purpose |
-|---------|---------|
-| [Python](https://python.org) | Core programming language |
-| [Python-Markdown](https://python-markdown.github.io/) | Markdown parsing |
-| [Jinja2](https://jinja.palletsprojects.com/) | Templating engine |
-| [Bootstrap 5](https://getbootstrap.com/) | Frontend framework |
-| [Font Awesome](https://fontawesome.com/) | Icons |
-| [PyYAML](https://pyyaml.org/) | YAML parsing |
-| [python-frontmatter](https://github.com/eyeseast/python-frontmatter) | Frontmatter parsing |
-| [Watchdog](https://github.com/gorakhargosh/watchdog) | File watching |
+### Layout Resolution (Aggressive)
+When you write:
+```yaml
+layout: layouts/posts
+```
 
-### 💻 Maintainers
+Engine tries in order:
+1. `templates/layouts/posts.pax`
+2. `templates/layouts/posts.html`
+3. `templates/layouts/post.pax` (singular fallback)
+4. `templates/medusa/posts.pax`
+5. `templates/medusa/post.pax`
+6. `templates/post.pax` (rglob anywhere)
+7. Fallback chain: `post` → `medusa/post` → `layouts/post` → `medusa/default` → `layouts/default` → `default` → `page`
 
-- **Axcora Technology**
+So `layouts/post` and `layouts/posts` are treated as same!
+
+### PAX Fixes
+```jinja
+{# Slice syntax auto-fixed #}
+{% for related in related_posts[:3] %}  {# becomes | limit(3) #}
+{% for related in related_posts | limit(3) %}
+
+{# Safe image with fallback #}
+<img src="{{ image or page.image or config.image or site.image or '' }}"/>
+
+{# Tags #}
+{% for t in tags %}  {# tags = dict of all tags #}
+  <a href="/tags/{{ t }}">#{{ t }}</a>
+{% endfor %}
+
+{% for t in page.tags or post.tags %}
+  #{{ t }}
+{% endfor %}
+```
+
+### Post Template Example
+`templates/medusa/post.pax` or `templates/layouts/post.pax`:
+```pax
+---
+layout: medusa/default
+---
+<div class="row">
+<div class="col-12 col-lg-8 p-2">
+<div class="card p-2">
+<img class="img-fluid shadow" src="{{image or config.image}}"/>
+<div class="p-5">
+{% if toc %}
+<div class="card p-5">{{ toc | safe }}</div>
+{% endif %}
+{{content| safe }}
+</div>
+</div>
+</div>
+<div class="col-12 col-lg-4 p-2">
+<div class="card p-2">
+<img src="{{config.about.logo or site.about.logo}}"/>
+<h3>{{config.about.title or site.about.title}}</h3>
+</div>
+</div>
+</div>
+```
+
+---
+
+## ⚙️ Config - Medusa
+
+`config.yaml`:
+```yaml
+name: PyCora Medusa
+title: Medusa SSG
+description: Advanced PAX Engine
+url: https://example.com
+
+image: /img/default.jpg
+
+about:
+  title: Axcora
+  logo: /img/logo.png
+  description: Static Site Generator
+  button:
+    url: /about
+    text: About Us
+
+# site.* also works (backward compat)
+site:
+  name: PyCora Medusa
+```
+
+Medusa auto-exposes both `config.*` and `site.*` to templates:
+```jinja
+{{ config.about.title or site.about.title or about.title }}
+```
+
+---
+
+## 📦 Collections - Medusa Power
+
+```jinja
+{# All posts - includes flat + nested #}
+{% for post in collections.posts %}
+  {{ post.title }} - {{ post.url }}
+{% endfor %}
+
+{# Sub collection: content/posts/tutorial/*.md #}
+{% for post in collections.posts.tutorial %}
+  {{ post.title }}
+{% endfor %}
+
+{# Or via posts alias #}
+{% for post in posts %}
+{% endfor %}
+```
+
+All nested files are added to parent collections:
+- `content/posts/a.md` → `collections['posts']`
+- `content/posts/tutorial/b.md` → `collections['posts']` AND `collections['posts/tutorial']` AND `collections['posts'].tutorial`
+
+---
+
+## 🏷️ Tags System
+
+Auto-generated:
+- `output/tags/index.html` - All tags
+- `output/tags/comparison/index.html` - Posts with tag comparison
+- `output/tags/first/index.html`
+
+In template:
+```jinja
+{# All tags dict #}
+{% for tag_name, posts in tags.items() %}
+  {{ tag_name }} ({{ posts | length }})
+{% endfor %}
+```
+
+---
+
+## 🚀 Build & Deploy
+
+```bash
+python ssg.py
+# Ready in 0.87s - 41 files - MEDUSA v2.4.6
+
+# Output
+output/
+├── index.html
+├── posts/
+│   ├── first/index.html
+│   ├── second/index.html
+│   └── nested/world/index.html
+├── tags/
+│   ├── comparison/
+│   ├── first/
+│   └── pycora/
+├── sitemap.xml
+├── feed.xml
+├── feed.json
+└── robots.txt
+```
+
+Deploy `output/` to any static hosting.
+
+---
+
+## 🐛 Troubleshooting - Medusa Edition
+
+| Problem | Solution |
+|---------|----------|
+| `TemplateNotFound: layouts/post` | Create `templates/layouts/post.pax` or `templates/medusa/post.pax` OR let it fallback to `medusa/default.pax` |
+| `Template not found: post - post.pax` | Fixed in v2.4.8 - now auto fallback silent, build still succeeds with 41 files |
+| Tags error | Fixed in v2.4.8 - now supports ALL YAML formats |
+| `posts/hello/*.md` not rendered | Fixed - now all nested included in `collections.posts` |
+| `{{config.about.logo}}` empty | Use `{{config.about.logo or site.about.logo or ''}}` - ChainableUndefined returns empty, not crash |
+
+**Clean build should be:**
+```
+Ready in 0.87s - 41 files - MEDUSA v2.4.6
+```
+
+
+---
+
+## Support & Donate
+
+If you like this project, please support:
+
+- PayPal: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JVZVXBC4N9DAN
+- Gumroad Coffee: https://creativitaz.gumroad.com/coffee
+- GitHub Sponsors: https://github.com/sponsors/mesinkasir
+
+---
+
+## 📄 License & Credits
+
+MIT - Axcora Technology - https://axcora.com
+
+**Engine:** MEDUSA v2.4.8
+- PAX Loader with plural/singular fix
+- CollectionList with subs
+- ChainableUndefined for safe templating
+- Tags ALL support
 
 ---
 
 ## 📞 Contact
 
-| Platform | Link |
-|----------|------|
-| 🌐 Website | [pycora.axcora.com](https://pycora.axcora.com) |
-| 💻 GitHub | [mesinkasir](https://github.com/mesinkasir) |
-| 📧 Email | [axcora@gmail.com](mailto:axcora@gmail.com) |
-| 👨‍ Consult | [Hire Us](https://www.fiverr.com/creativitas/design-your-modern-website-using-jekyll) |
-
----
-
-## ⭐ Show Your Support
-
-If you find PyCora useful, please consider:
-
-- ⭐ Starring the repository on GitHub
-- 🐦 Following us on Twitter
-- 📝 Writing about PyCora
-- 🐛 Reporting issues
-
----
-
-**PyCora** - *Static Site Generator • Python • Markdown • YAML*
-
-Read Docs: [https://pycora.axcora.com/docs](https://pycora.axcora.com/docs)
+- Website: https://pycora.axcora.com
+- GitHub: https://github.com/mesinkasir
+- Docs: https://pycora.axcora.com/docs
+- 👨‍ Consult | [Hire Us](https://www.fiverr.com/creativitas/create-your-custom-website-and-app)
 
 <div align="center">
-
-**Made with ❤️ by [Axcora](https://axcora.com)**
-
+<b>PyCora MEDUSA v2.4.8</b> - Made with ❤ by Axcora<br/>
+<code>posts/*.md</code> and <code>posts/nested/*.md</code>
 </div>

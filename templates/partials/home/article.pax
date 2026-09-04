@@ -1,0 +1,5 @@
+<article class="card p-2">
+<div class="p-5">
+{{content |safe}}
+</div>
+</article>
