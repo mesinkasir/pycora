@@ -367,5 +367,4 @@ MIT - Axcora Technology - https://axcora.com
 
 <div align="center">
 <b>PyCora MEDUSA v2.4.8</b> - Made with ❤ by Axcora<br/>
-<code>posts/*.md</code> and <code>posts/nested/*.md</code>
 </div>
