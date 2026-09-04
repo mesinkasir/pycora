@@ -1380,7 +1380,7 @@ class SimpleSSG:
                 pass
         try:
             site = self.config.get('site', {})
-            site_url = site.get('url', 'http://localhost:4000').rstrip('/')
+            site_url = site.get('url', 'http://localhost:8000').rstrip('/')
             site_name = site.get('name', 'PyCora')
             site_desc = site.get('description', 'Static Site')
             def _feed_date_key(x):
@@ -1454,7 +1454,7 @@ class SimpleSSG:
     def generate_sitemap(self):
         try:
             site = self.config.get('site', {})
-            site_url = site.get('url', 'http://localhost:4000').rstrip('/')
+            site_url = site.get('url', 'http://localhost:8000').rstrip('/')
             urls = []
             urls.append(f"  <url><loc>{site_url}/</loc><lastmod>{datetime.now().date().isoformat()}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>")
             for item in self.all_items:
