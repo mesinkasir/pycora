@@ -8,7 +8,7 @@
 
 > Medusa is the advanced engine of PyCora with PAX templating, aggressive layout fallback, and true nested content support.
 
-Read Docs: [https://pycora.axcora.com/docs](https://pycora.axcora.com/)
+Read Docs: [https://pycora.axcora.com/](https://pycora.axcora.com/)
 
 ![Pycora Python Static Site Generator](shoot.webp)
 
