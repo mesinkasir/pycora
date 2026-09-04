@@ -6,7 +6,7 @@
 
 **Python • Markdown • YAML • Fast • Minimal • Elegant**
 
-Read Docs: [https://pycora.axcora.com/docs](https://pycora.axcora.com/docs)
+Read Docs: [https://pycora.axcora.com](https://pycora.axcora.com)
 
 ![Pycora Python SSG](mockup.png)
 
@@ -491,7 +491,7 @@ If you find PyCora useful, please consider:
 
 **PyCora** - *Static Site Generator • Python • Markdown • YAML*
 
-Read Docs: [https://pycora.axcora.com/docs](https://pycora.axcora.com/docs)
+Read Docs: [https://pycora.axcora.com](https://pycora.axcora.com)
 
 <div align="center">
 
